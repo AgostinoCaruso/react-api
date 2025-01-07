@@ -16,7 +16,7 @@ function Main() {
     const handleDelete = (itemID) => {
         const newArray = arrayCard.filter((item) => item.id != itemID);
         setArrayCard(newArray);
-    };
+    };  
 
     return (
         <main>
