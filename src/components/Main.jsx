@@ -1,14 +1,27 @@
+import { useState } from "react";
 import Card from "./Card";
 import Form from "./Form";
 
-import ArrayObj from "./arrayObj";
+import ArrayObj from "../data/arrayObj";
 
 
 function Main() {
+
+    const [arrayCard, setArrayCard] = useState([...ArrayObj]);
+    const addCard = ((newCard) => {
+        setArrayCard([...arrayCard, newCard]);
+    });
+
+
+    const handleDelete = (itemID) => {
+        const newArray = ArrayObj.filter((item) => item.id != itemID);
+        setArrayCard(newArray);
+    };
+
     return (
         <main>
-            <Form />
-            <Card array={ArrayObj}/>
+            <Form addCard={addCard} />
+            <Card array={arrayCard} handleDelete={handleDelete} />
         </main>
     );
 }

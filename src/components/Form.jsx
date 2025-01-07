@@ -1,7 +1,7 @@
 function Form() {
     return (
         <>
-            <form className=" ">
+            <form >
                 <input
                     type="text"
                     name="search"

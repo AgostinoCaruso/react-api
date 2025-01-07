@@ -1,14 +1,15 @@
 
-function Card({ array }) {
+function Card({ array, handleDelete }) {
     return (
-        <div>
-            {array.map((ele) => (
+        <section className=" grid grid-cols-4 gap-1">
+            {array.map((ele) => 
                 <div key={ele.id} >
                     <h3>{ele.title}</h3>
                     <span>{ele.content}</span>
+                    <span className=" cursor-pointer" onClick={() => handleDelete(ele.id)}>❌Delete</span>
                 </div>
-            ))}
-        </div>
+            )}
+        </section>
     );
 }   
 
