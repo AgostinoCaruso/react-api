@@ -35,13 +35,13 @@ function Form({ addCard }) {
             inputValue = "empty";
         }
 
-        setFormData({...formData, [name]: inputValue});
+        setFormData({ ...formData, [name]: inputValue });
     }
 
 
     return (
         <>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit} className=" flex flex-col" >
                 <input
                     type="text"
                     name="title"
@@ -49,7 +49,19 @@ function Form({ addCard }) {
                     value={formData.title}
                     onChange={handleInputChange}
                 />
-
+                <textarea
+                    type="textarea"
+                    name="content"
+                    placeholder="Write here..."
+                    value={formData.content}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="checkbox"
+                    name="available"
+                    checked={formData.available}
+                    onChange={handleInputChange}
+                />
                 <button type="submit" className="">Invia</button>
             </form>
         </>
