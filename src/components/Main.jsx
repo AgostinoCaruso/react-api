@@ -1,7 +1,14 @@
+import Card from "./Card";
+import Form from "./Form";
+
+import ArrayObj from "./arrayObj";
+
+
 function Main() {
     return (
         <main>
-            <h2>Sono il Main</h2>
+            <Form />
+            <Card array={ArrayObj}/>
         </main>
     );
 }
