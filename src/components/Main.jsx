@@ -34,11 +34,6 @@ function Main() {
             })
     };
 
-    //axios call post
-    const postData = (book) =>{
-        setBooks([...books], book);
-    }
-
     //axios call destroy
     const handleDelete = (itemID) => {
         axios
@@ -72,7 +67,7 @@ function Main() {
 
     return (
         <main>
-            <Form addBook={addBook} search={updateSearch} />
+            <Form addBook={addBook} books={books} />
             <Card array={books} handleDelete={handleDelete} />
         </main>
     );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form({ addBook, search }) {
+function Form({ addBook, books }) {
 
 
 
@@ -14,9 +14,15 @@ function Form({ addBook, search }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        let n = 0;
+        let newID = books.forEach((ele)=>{
+            if(ele.id>n){
+                n=ele.id;
+            }
+        });
+        newID = n+1;
         const book = {
-            id: Math.random(),
+            id: newID,
             title: formData.title,
             status: formData.status,
             longDescription: formData.description,
