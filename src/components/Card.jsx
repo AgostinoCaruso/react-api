@@ -2,17 +2,17 @@
 function Card({ array, handleDelete }) {
     return (
         <section className=" grid grid-cols-4 gap-1">
+            <br /><br />
+            <hr />
             {array.map((ele) => 
                 <div key={ele.id} >
-                    <h3>{ele.name}</h3>
+                    <h3>{ele.title}</h3>
                     <br />
-                    <span>{ele.species}</span>
+                    <span>Status: {ele.status === "PUBLISH" || true ? "published" : "unpublished"}</span>
                     <br />
-                    <span>{ele.status === "Alive" || true ? "vivo" : "morto"}</span>
+                    <span>Description: {ele.longDescription}</span>
                     <br />
-                    <span>Luogo d'origine: {ele.origin.name}</span>
-                    <br />
-                    <span>Numero degli episodi:{ele.episode.length}</span>
+                    <span>Page count:{ele.pageCount}</span>
                     <br />
                     <span className=" cursor-pointer" onClick={() => handleDelete(ele.id)}>❌Delete</span>
                     <hr />

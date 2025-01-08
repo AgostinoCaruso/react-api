@@ -4,51 +4,50 @@ import Form from "./Form";
 
 import axios from "axios";
 
+const apiUrl = "http://localhost:3000";
 
 function Main() {
 
-    const [characters, setCharacters] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [books, setBooks] = useState([]);
 
-    const fetchCharacters = async () => {
-        try {
-            const characterRequests = [];
-
-            for (let id = 1; id <= 10; id++) {
-                characterRequests.push(axios.get(`https://rickandmortyapi.com/api/character/${id}`));
-            }
-
-            const characterResponses = await Promise.all(characterRequests);
-            const charactersData = characterResponses.map(response => response.data);
-            setCharacters(charactersData);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
+    const getData = (search)=>{
+        let options = null;
+        if(search) {
+            options = {
+                params: {search},
+            };
         }
+        axios
+            .get(apiUrl + "/books", options)
+            .then((res) =>{
+                console.log(res.data);
+                setBooks(res.data.data);
+            })
+            .catch((error) =>{
+                console.log(error);
+            })
     };
 
     const handleDelete = (itemID) => {
-        const newArray = characters.filter((item) => item.id !== itemID);
-        setCharacters(newArray);
+        //axios call destroy
+        const newArray = books.filter((item) => item.id !== itemID);
+        setBooks(newArray);
     };
 
-    const addCard = (newCharacter) => {
-        setCharacters([...characters, newCharacter]);
+    const addBook = (newBooks) => {
+        //axios call put
+        setBooks([...books, newBooks]);
     };
 
     useEffect(() => {
-        fetchCharacters();
+        getData();
     }, []);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
 
     return (
         <main>
-            <Form addCard={addCard} />
-            <Card array={characters} handleDelete={handleDelete} />
+            <Form addBook={addBook} />
+            <Card array={books} handleDelete={handleDelete} />
         </main>
     );
 }
