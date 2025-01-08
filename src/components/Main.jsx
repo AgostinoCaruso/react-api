@@ -15,6 +15,7 @@ function Main() {
         setSearch(search);
     }
 
+    //axios call index
     const getData = (search) => {
         let options = null;
         if (search) {
@@ -33,10 +34,15 @@ function Main() {
             })
     };
 
+    //axios call post
+    const postData = (book) =>{
+        setBooks([...books], book);
+    }
+
+    //axios call destroy
     const handleDelete = (itemID) => {
-        //axios call destroy
         axios
-            .delete(`${apiUrl}/books/ ${itemID}`)
+            .delete(`${apiUrl}/books/${itemID}`)
             .then((res) => {
                 console.log("item deleted:", res.data);
                 setBooks( books.filter((book) => book.id != itemID));
@@ -44,13 +50,19 @@ function Main() {
             .catch((error) => {
                 console.log(error);
             })
-        // const newArray = books.filter((item) => item.id !== itemID);
-        // setBooks(newArray);
     };
 
     const addBook = (newBooks) => {
-        //axios call put
-        setBooks([...books, newBooks]);
+        //axios call post
+        axios
+            .post(`${apiUrl}/books`,newBooks)
+            .then((res)=>{
+                console.log("book added", res.data);
+                setBooks([...books, newBooks]);
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
     };
 
     useEffect(() => {

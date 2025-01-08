@@ -1,38 +1,35 @@
 import { useState } from "react";
 
-function Form({ addCard, search }) {
+function Form({ addBook, search }) {
 
 
 
     const [formData, setFormData] = useState({
         id: 0,
-        name: "",
-        species: "",
-        alive: false,
-        location: "",
-        episodes: 0,
+        title: "",
+        status: false,
+        description: "",
+        pageCount: 0,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const card = {
+        const book = {
             id: Math.random(),
-            name: formData.name,
-            species: formData.species,
-            alive: formData.alive,
-            location: formData.location,
-            episodes: formData.episodes,
+            title: formData.title,
+            status: formData.status,
+            longDescription: formData.description,
+            pageCount: formData.pageCount,
         };
 
-        addCard(card);
+        addBook(book);
         setFormData({
             id: 0,
-            name: "",
-            species: "",
-            alive: false,
-            location: "",
-            episodes: 0,
+            title: "",
+            status: false,
+            description: "",
+            pageCount: 0,
         });
     }
 
@@ -49,54 +46,38 @@ function Form({ addCard, search }) {
 
     return (
         <>
-
-            {/* <input 
-            type="text"
-            id="search"
-            name="search"
-            onChange={handleSearch}
-            /> */}
-
             <form onSubmit={handleSubmit} className=" flex flex-col" >
                 <input
                     type="text"
-                    name="name"
-                    placeholder="Name..."
-                    value={formData.name}
+                    name="title"
+                    placeholder="Title..."
+                    value={formData.title}
                     onChange={handleInputChange}
                 />
                 <br />
                 <br />
-                <input
-                    type="text"
-                    name="species"
-                    placeholder="Species..."
-                    value={formData.species}
-                    onChange={handleInputChange}
-                />
-                <br />
-                <label htmlFor="alive">Alive?</label>
+                <label htmlFor="status">Published?</label>
                 <input
                     type="checkbox"
-                    name="alive"
-                    checked={formData.alive}
+                    name="status"
+                    checked={formData.status}
                     onChange={handleInputChange}
                 />
                 <br />
-                <input
+                <textarea
                     type="text"
-                    name="location"
-                    placeholder="Location..."
-                    value={formData.location}
+                    name="description"
+                    placeholder="Description..."
+                    value={formData.description}
                     onChange={handleInputChange}
                 />
                 <br />
                 <br />
                 <input
                     type="number"
-                    name="episodes"
-                    placeholder="N' episodes..."
-                    value={formData.episodes}
+                    name="pageCount"
+                    placeholder="N' page..."
+                    value={formData.pageCount}
                     onChange={handleInputChange}
                 />
                 <br />
