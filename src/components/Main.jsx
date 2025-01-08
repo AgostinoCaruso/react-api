@@ -9,29 +9,43 @@ const apiUrl = "http://localhost:3000";
 function Main() {
 
     const [books, setBooks] = useState([]);
+    const [search, setSearch] = useState("");
 
-    const getData = (search)=>{
+    const updateSearch = (search) => {
+        setSearch(search);
+    }
+
+    const getData = (search) => {
         let options = null;
-        if(search) {
+        if (search) {
             options = {
-                params: {search},
+                params: { search },
             };
         }
         axios
             .get(apiUrl + "/books", options)
-            .then((res) =>{
+            .then((res) => {
                 console.log(res.data);
                 setBooks(res.data.data);
             })
-            .catch((error) =>{
+            .catch((error) => {
                 console.log(error);
             })
     };
 
     const handleDelete = (itemID) => {
         //axios call destroy
-        const newArray = books.filter((item) => item.id !== itemID);
-        setBooks(newArray);
+        axios
+            .delete(`${apiUrl}/books/ ${itemID}`)
+            .then((res) => {
+                console.log("item deleted:", res.data);
+                setBooks( books.filter((book) => book.id != itemID));
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        // const newArray = books.filter((item) => item.id !== itemID);
+        // setBooks(newArray);
     };
 
     const addBook = (newBooks) => {
@@ -40,13 +54,13 @@ function Main() {
     };
 
     useEffect(() => {
-        getData();
-    }, []);
+        getData(search);
+    }, [search]);
 
 
     return (
         <main>
-            <Form addBook={addBook} />
+            <Form addBook={addBook} search={updateSearch} />
             <Card array={books} handleDelete={handleDelete} />
         </main>
     );

@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-function Form({ addCard }) {
+function Form({ addCard, search }) {
+
+
 
     const [formData, setFormData] = useState({
         id: 0,
@@ -47,6 +49,14 @@ function Form({ addCard }) {
 
     return (
         <>
+
+            {/* <input 
+            type="text"
+            id="search"
+            name="search"
+            onChange={handleSearch}
+            /> */}
+
             <form onSubmit={handleSubmit} className=" flex flex-col" >
                 <input
                     type="text"
