@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import Card from "./Card";
-import Form from "./Form";
+import Card from "../components/Card";
+import FormPage from "./FormPage";
 
 import axios from "axios";
 
 const apiUrl = "http://localhost:3000";
 
-function Main() {
+function BooksPage() {
 
     const [books, setBooks] = useState([]);
     const [search, setSearch] = useState("");
@@ -67,10 +67,9 @@ function Main() {
 
     return (
         <main>
-            <Form addBook={addBook} books={books} />
             <Card array={books} handleDelete={handleDelete} />
         </main>
     );
 }
 
-export default Main;
+export default BooksPage;

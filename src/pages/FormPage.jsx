@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form({ addBook, books }) {
+function FormPage({ addBook, books }) {
 
 
 
@@ -94,4 +94,4 @@ function Form({ addBook, books }) {
     );
 }
 
-export default Form;
+export default FormPage;
