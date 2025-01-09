@@ -1,9 +1,9 @@
 
-function contactUs(){
+function ContactUs(){
     return(
 
         <h1>Contact us</h1>
     );
 }
 
-export default contactUs;
+export default ContactUs;

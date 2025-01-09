@@ -1,8 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+function FormPage() {
+    const apiUrl = "http://localhost:3000";
+    const [books, setBooks] = useState([]);
 
-function FormPage({ addBook, books }) {
+    //to get all books in the DB
+    const getData = (search) => {
+        let options = null;
+        if (search) {
+            options = {
+                params: { search },
+            };
+        }
+        axios
+            .get(apiUrl + "/books", options)
+            .then((res) => {
+                console.log(res.data);
+                setBooks(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    };
 
+    //to update everytime this variable changes
+    useEffect(() => {
+        getData();
+    }, []);
 
+    //to add a new book via form to DB
+    const addBook = (newBooks) => {
+        //axios call post
+        axios
+            .post(`${apiUrl}/books`,newBooks)
+            .then((res)=>{
+                console.log("book added", res.data);
+                setBooks([...books, newBooks]);
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    };
 
     const [formData, setFormData] = useState({
         id: 0,

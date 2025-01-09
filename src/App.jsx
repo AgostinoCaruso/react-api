@@ -1,27 +1,24 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //layout
-import defaultLayout from './layout/defaultLayout';
+import DefaultLayout from './layout/defaultLayout';
 //pages
-import FormPage from './pages/FormPage';
-import contactUs from './pages/contactUs';
-import aboutUs from './pages/aboutUs';
-
-import Header from './components/Header';
 import BooksPage from './pages/BooksPage';
-
+import FormPage from './pages/FormPage';
+import ContactUs from './pages/contactUs';
+import AboutUs from './pages/aboutUs';
+import BookPage from './pages/BookPage';
 function App() {
 
   return (
     <BrowserRouter>
         <Routes>
-          <Route component={defaultLayout}>
-            <Route index component={HomePage}/>
-            <Route path="/books" component={BooksPage}/>
-            {/* <Route path="/books/:id" component={}/> */}
-            <Route path="/addNewBook" component={FormPage}/>
-            <Route path="/contactus" component={contactUs}/>
-            <Route path="aboutus" component={aboutUs}/>
+          <Route element={<DefaultLayout/>}>
+            <Route index element={<BooksPage/>}/>
+            <Route path="/books/:id" element={<BookPage/>}/>
+            <Route path="/addNewBook" element={<FormPage/>}/>
+            <Route path="/contactus" element={<ContactUs/>}/>
+            <Route path="/aboutus" element={<AboutUs/>}/>
           </Route>
         </Routes>
     </BrowserRouter>

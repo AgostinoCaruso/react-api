@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
-import FormPage from "./FormPage";
 
 import axios from "axios";
 
@@ -10,10 +9,6 @@ function BooksPage() {
 
     const [books, setBooks] = useState([]);
     const [search, setSearch] = useState("");
-
-    const updateSearch = (search) => {
-        setSearch(search);
-    }
 
     //axios call index
     const getData = (search) => {
@@ -47,18 +42,7 @@ function BooksPage() {
             })
     };
 
-    const addBook = (newBooks) => {
-        //axios call post
-        axios
-            .post(`${apiUrl}/books`,newBooks)
-            .then((res)=>{
-                console.log("book added", res.data);
-                setBooks([...books, newBooks]);
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
-    };
+
 
     useEffect(() => {
         getData(search);
