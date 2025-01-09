@@ -15,8 +15,8 @@ function App() {
         <Routes>
           <Route element={<DefaultLayout/>}>
             <Route index element={<BooksPage/>}/>
-            <Route path="/books/:id" element={<BookPage/>}/>
-            <Route path="/addNewBook" element={<FormPage/>}/>
+            <Route path="/:id" element={<BookPage/>}/>
+            <Route path="/addBook" element={<FormPage/>}/>
             <Route path="/contactus" element={<ContactUs/>}/>
             <Route path="/aboutus" element={<AboutUs/>}/>
           </Route>
