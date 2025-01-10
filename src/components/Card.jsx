@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+const apiUrl = "http://localhost:5173";
 
 function Card({ array, handleDelete }) {
     return (
@@ -14,6 +16,7 @@ function Card({ array, handleDelete }) {
                     <br />
                     <span>Page count:{ele.pageCount}</span>
                     <br />
+                    <Link to={`${apiUrl}/book/${ele.id}`}> Visualizzami</Link>
                     <span className=" cursor-pointer" onClick={() => handleDelete(ele.id)}>❌Delete</span>
                     <hr />
                 </div>

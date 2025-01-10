@@ -8,19 +8,23 @@ import FormPage from './pages/FormPage';
 import ContactUs from './pages/contactUs';
 import AboutUs from './pages/aboutUs';
 import BookPage from './pages/BookPage';
+import PageNotFound from './pages/PageNotFound';
 function App() {
 
   return (
     <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout/>}>
-            <Route index element={<BooksPage/>}/>
-            <Route path="/:id" element={<BookPage/>}/>
-            <Route path="/addBook" element={<FormPage/>}/>
-            <Route path="/contactus" element={<ContactUs/>}/>
-            <Route path="/aboutus" element={<AboutUs/>}/>
+      <Routes>
+        <Route path='/' element={<DefaultLayout />}>
+          <Route path='book'>
+            <Route index element={<BooksPage />} />
+            <Route path=":id" element={<BookPage />} />
+            <Route path="addBook" element={<FormPage />} />
           </Route>
-        </Routes>
+          <Route path="contactus" element={<ContactUs />} />
+          <Route path="aboutus" element={<AboutUs />} />
+        </Route>
+        <Route path='*' element={<PageNotFound/>} />
+      </Routes>
     </BrowserRouter>
   );
 }

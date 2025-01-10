@@ -5,15 +5,12 @@ function Header() {
         <header className=" text-center">
             <h1 className="">React Blog Api</h1>
             <nav className=" flex flex-col">
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/book">Home</NavLink>
                 <br />
                 <NavLink to="/contactus">Contact Us</NavLink>
                 <br />
                 <NavLink to="/aboutus">About Us</NavLink>
                 <br />
-                <NavLink to="/addbook">Add new book</NavLink>
-                <br />
-
             </nav>
         </header>
     );

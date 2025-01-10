@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Card from "../components/Card";
 
 import axios from "axios";
@@ -11,15 +12,10 @@ function BooksPage() {
     const [search, setSearch] = useState("");
 
     //axios call index
-    const getData = (search) => {
-        let options = null;
-        if (search) {
-            options = {
-                params: { search },
-            };
-        }
+    const getData = () => {
+
         axios
-            .get(apiUrl + "/books", options)
+            .get(apiUrl + "/books")
             .then((res) => {
                 console.log(res.data);
                 setBooks(res.data.data);
@@ -45,12 +41,13 @@ function BooksPage() {
 
 
     useEffect(() => {
-        getData(search);
-    }, [search]);
+        getData();
+    }, []);
 
 
     return (
         <main>
+            <Link to="/book/addbook">Add new book</Link>
             <Card array={books} handleDelete={handleDelete} />
         </main>
     );
